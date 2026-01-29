@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
 	get_args(argc, argv);
 	srand(time(NULL) ^ clock());
 
-	printf("Parametry wywołania:\nPlik konfiguracyjny: %s\nPlik z mapą: %s\nLiczba cząstek: %u\nLiczba iteracji: %u\nLogi raz na %u iteracje\nPlik z logami: %s\n\n", realpath(conf.config_file_name, buf), realpath(conf.map_file_name, buf), conf.part, conf.iter, conf.log_iter, realpath(conf.log_file_name, buf));
+	printf("Parametry wywołania:\nPlik konfiguracyjny: %s\nPlik z mapą: %s\nLiczba cząstek: %u\nLiczba iteracji: %u\nLogi raz na %u iteracje\nPlik z logami: %s\n\n", realpath(conf.config_file_name, buf), realpath(conf.map_file_name, buf), conf.part, conf.iter, conf.log_iter, conf.log_file == stdout ? "(stdout)" : realpath(conf.log_file_name, buf));
 
 	if(conf.config_file == NULL) {
 		swarm.c1 = 0.5;

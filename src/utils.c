@@ -17,7 +17,7 @@ void verror_msg(const char *restrict msg, ...) {
 	char buf[0x4000];
 	va_list args;
 	va_start(args, msg);
-	vsprintf(buf, msg, args);
+	vsnprintf(buf, sizeof buf, msg, args);
 	fprintf(stderr, "\033[31;1mBłąd: %s!\033[0m\n", buf);
 	va_end(args);
 	exit(EXIT_FAILURE);
