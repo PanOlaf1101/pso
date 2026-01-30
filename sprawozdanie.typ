@@ -112,6 +112,23 @@ Wartości domyślne:
 - Zapis postępów: 0 (brak zapisu)
 - Plik z logami: wyjście standardowe (`stdout`)
 
+= Generowanie przykładowej mapy
+Dla sprawdzenia większej liczby przykładów wykorzystałem poniższy kod napisany w języku Python:
+```python
+import sys
+import numpy as np
+
+name, width, height = sys.argv[1:4]
+width, height = map(int, (width, height))
+
+arr = np.random.uniform(low = -10.0, high = 10.0, size=(height, width))
+
+with open(name, 'w+') as f:
+    print(width, height, file=f)
+    for i in range(height):
+        print(' '.join(map(str, arr[i])), file=f)
+```
+
 = Testowanie
 Aby przetestować działanie programu korzystając z przykładowych map w folderze `maps`, użyto poniższego skryptu w języku Bash:
 ```bash
@@ -131,5 +148,4 @@ fi
 
 Program uruchomiono na dwóch różnych komputerach z innymi systemami operacyjnymi i kompilatorami:
 1. Linux (kernel 6.18.6), kompilator GCC 15.2.1
-2. macOS 26.1, kompilator Clang
-
+2. macOS 26.1, kompilator Clang 17.0.0

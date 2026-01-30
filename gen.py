@@ -1,10 +1,12 @@
-import sys, random
+import sys
+import numpy as np
 
 name, width, height = sys.argv[1:4]
+width, height = map(int, (width, height))
 
-arr = random.choice([-10.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10], p=[0.25, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.5], size=(height, width))
+arr = np.random.uniform(low = -10.0, high = 10.0, size=(height, width))
 
 with open(name, 'w+') as f:
     print(width, height, file=f)
     for i in range(height):
-        print(' '.join(map(str, arr[i])))
+        print(' '.join(map(str, arr[i])), file=f)

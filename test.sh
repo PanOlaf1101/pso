@@ -1,7 +1,7 @@
 #!/bin/bash
 
 make
-if [[ $(uname) -eq "Linux" ]] then
+if [[ $(uname) == "Linux" ]]; then
 	for i in $(ls maps); do
 		valgrind --leak-check=full --show-leak-kinds=all -- ./pso "maps/$i" $@
 	done
