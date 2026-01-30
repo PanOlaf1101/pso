@@ -130,6 +130,10 @@ int main(int argc, char *argv[]) {
 	} else {
 		if(fscanf(conf.config_file, "%lf%lf%lf%lf", &swarm.c1, &swarm.c2, &swarm.r1, &swarm.r2) != 4)
 			error_msg("Nie można wczytać danych z pliku konfiguracyjnego");
+		if(swarm.r1 < 0 || swarm.r1 > 1)
+			error_msg("Niepoprawny parametr dla r1");
+		if(swarm.r2 < 0 || swarm.r2 > 1)
+			error_msg("Niepoprawny parametr dla r2");
 		fclose(conf.config_file);
 		conf.config_file = NULL;
 	}

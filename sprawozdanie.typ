@@ -15,6 +15,8 @@ Niniejsze Sprawozdanie jest omówieniem algorytmu PSO (ang. _Particle Swarm Opti
 
 Algorytm optymalizacji cząstek roju (PSO) to algorytm rozpatrujący i poprawiający położenie czątek na mapie w celu znalezienia najlepszego miejsca. Przykładowym zastosowaniem takiego rozwiązania jest użycie dronów nad określonym terenem gdzie trzeba znaleźć nadajnik na podstawie siły emisji jego sygnału w różnych regionach. Cząstki-drony poprawiają swoje położenie zrówno na podstawie własnej pamięci, jak i ogólnej wiedzy całego roju. Dane z mapy są przetwarzane przez specjalną funkcję `fitness()`
 
+Link do repozytorium na GitHubie: #link("https://github.com/PanOlaf1101/pso")
+
 = Opis matematyczny aktualizacji cząstek
 Na zmianę w położeniu cząstek moją głównie wpływ 3 czynniki:
 1. *Pamięć własna (_pBest_)* - najlepsza pozycja cząstki do tej pory
