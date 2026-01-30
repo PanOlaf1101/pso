@@ -21,7 +21,7 @@ double mapv(const Map *m, unsigned x, unsigned int y) {
 double fitness(const Map *m, const double x, const double y) {
 	const double fx = floor(x), fy = floor(y), cx = ceil(x), cy = ceil(y);
 
-	if(fx < 0 || fy < 0 || fx+1 >= (double)m->w || fy+1 >= (double)m->h)
+	if(fx < 0 || fy < 0 || (unsigned)cx >= m->w || (unsigned)cy >= m->h)
 		return -INFINITY;
 	return mapv(m, fx, fy)*(fx+1-x)*(fy+1-y) + mapv(m, fx, cy)*(fx+1-x)*(y-fy) + mapv(m, cx, fy)*(x-fx)*(fy+1-y) + mapv(m, cx, cy)*(x-fx)*(y-fy);
 }

@@ -70,7 +70,7 @@ double mapv(const Map *m, unsigned x, unsigned int y) {
 double fitness(const Map *m, const double x, const double y) {
 	const double fx = floor(x), fy = floor(y), cx = ceil(x), cy = ceil(y);
 
-	if(fx < 0 || fy < 0 || fx+1 >= (double)m->w || fy+1 >= (double)m->h)
+	if(fx < 0 || fy < 0 || (unsigned)cx >= m->w || (unsigned)cy >= m->h)
 		return -INFINITY;
 	return mapv(m, fx, fy)*(fx+1-x)*(fy+1-y) + mapv(m, fx, cy)*(fx+1-x)*(y-fy) + mapv(m, cx, fy)*(x-fx)*(fy+1-y) + mapv(m, cx, cy)*(x-fx)*(y-fy);
 }
@@ -111,3 +111,25 @@ Wartości domyślne:
 - Parametry PSO: $wide w=0.5 wide c_1=1.0 wide c_2=1.0$
 - Zapis postępów: 0 (brak zapisu)
 - Plik z logami: wyjście standardowe (`stdout`)
+
+= Testowanie
+Aby przetestować działanie programu korzystając z przykładowych map w folderze `maps`, użyto poniższego skryptu w języku Bash:
+```bash
+#!/bin/bash
+
+make
+if [[ $(uname) -eq "Linux" ]] then
+	for i in $(ls maps); do
+		valgrind --leak-check=full --show-leak-kinds=all -- ./pso "maps/$i" $@
+	done
+else #macOS
+	for i in $(ls maps); do
+		leaks --atExit -- ./pso "maps/$i" $@
+	done
+fi
+```
+
+Program uruchomiono na dwóch różnych komputerach z innymi systemami operacyjnymi i kompilatorami:
+1. Linux (kernel 6.18.6), kompilator GCC 15.2.1
+2. macOS 26.1, kompilator Clang
+
